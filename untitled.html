@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p id="feedback"></p>
+    <p id="attempts"></p>
+
+    <script>
+        let numberToGuess = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = document.getElementById("guess").value;
+            attempts++;
+            let feedback = "";
+
+            if (guess < numberToGuess) {
+                feedback = "Too low! Try again.";
+            } else if (guess > numberToGuess) {
+                feedback = "Too high! Try again.";
+            } else {
+                feedback = `Congratulations! You guessed the number in ${attempts} attempts.`;
+            }
+
+            document.getElementById("feedback").textContent = feedback;
+            document.getElementById("attempts").textContent = `Attempts: ${attempts}`;
+        }
+    </script>
+</body>
+</html>
